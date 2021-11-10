@@ -1,0 +1,105 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "Drama", "label": "Drama", "shape": "dot", "title": "Drama"}, {"id": "Children\u0027s", "label": "Children\u0027s", "shape": "dot", "title": "Children\u0027s"}, {"id": "Crime", "label": "Crime", "shape": "dot", "title": "Crime"}, {"id": "Thriller", "label": "Thriller", "shape": "dot", "title": "Thriller"}, {"id": "Sci-Fi", "label": "Sci-Fi", "shape": "dot", "title": "Sci-Fi"}, {"id": "Romance", "label": "Romance", "shape": "dot", "title": "Romance"}, {"id": "Comedy", "label": "Comedy", "shape": "dot", "title": "Comedy"}, {"id": "Mystery", "label": "Mystery", "shape": "dot", "title": "Mystery"}, {"id": "Adventure", "label": "Adventure", "shape": "dot", "title": "Adventure"}, {"id": "War", "label": "War", "shape": "dot", "title": "War"}, {"id": "Action", "label": "Action", "shape": "dot", "title": "Action"}, {"id": "Fantasy", "label": "Fantasy", "shape": "dot", "title": "Fantasy"}, {"id": "Animation", "label": "Animation", "shape": "dot", "title": "Animation"}, {"id": "Musical", "label": "Musical", "shape": "dot", "title": "Musical"}, {"id": "Horror", "label": "Horror", "shape": "dot", "title": "Horror"}]);
+        edges = new vis.DataSet([{"from": "Drama", "to": "Children\u0027s"}, {"from": "Drama", "to": "Crime"}, {"from": "Drama", "to": "Thriller"}, {"from": "Drama", "to": "Sci-Fi"}, {"from": "Drama", "to": "Romance"}, {"from": "Drama", "to": "Comedy"}, {"from": "Drama", "to": "Mystery"}, {"from": "Drama", "to": "Adventure"}, {"from": "Drama", "to": "War"}, {"from": "Drama", "to": "Action"}, {"from": "Children\u0027s", "to": "Fantasy"}, {"from": "Children\u0027s", "to": "Comedy"}, {"from": "Children\u0027s", "to": "Animation"}, {"from": "Children\u0027s", "to": "Adventure"}, {"from": "Children\u0027s", "to": "Musical"}, {"from": "Crime", "to": "Thriller"}, {"from": "Crime", "to": "Comedy"}, {"from": "Crime", "to": "Action"}, {"from": "Thriller", "to": "Sci-Fi"}, {"from": "Thriller", "to": "Romance"}, {"from": "Thriller", "to": "Comedy"}, {"from": "Thriller", "to": "Mystery"}, {"from": "Thriller", "to": "Horror"}, {"from": "Thriller", "to": "Adventure"}, {"from": "Thriller", "to": "Action"}, {"from": "Fantasy", "to": "Adventure"}, {"from": "Sci-Fi", "to": "Comedy"}, {"from": "Sci-Fi", "to": "Horror"}, {"from": "Sci-Fi", "to": "Adventure"}, {"from": "Sci-Fi", "to": "Action"}, {"from": "Romance", "to": "Comedy"}, {"from": "Romance", "to": "Adventure"}, {"from": "Romance", "to": "Action"}, {"from": "Comedy", "to": "Animation"}, {"from": "Comedy", "to": "Horror"}, {"from": "Comedy", "to": "Adventure"}, {"from": "Comedy", "to": "Action"}, {"from": "Comedy", "to": "Musical"}, {"from": "Animation", "to": "Musical"}, {"from": "Horror", "to": "Action"}, {"from": "Adventure", "to": "Action"}, {"from": "War", "to": "Action"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
